@@ -10,9 +10,14 @@
      * @param {string} [text] текст
      * @returns {HTMLElement} HTML элемент
      */
-    function element(type, className, text) {
+    function element(type, className, text, i, j) {
         var elem = document.createElement(type);
         elem.className = className;
+
+        if (i !== undefined || j !== undefined){
+            elem.dataset['i'] = i;
+            elem.dataset['j'] = j;
+        }
 
         if (text) {
             elem.innerText = text;
@@ -34,17 +39,17 @@
             type,
             row,
             cell,
-            x,
-            y;
+            j,
+            i;
 
         containerElem.appendChild(element('div', 'map__res', 'Count: ' + Number(count)));
 
-        for (y = 0; y < map.length; y++) {
-            row = map[y];
+        for (i = 0; i < map.length; i++) {
+            row = map[i];
             rowElem = element('div', 'map__row');
 
-            for (x = 0; x < row.length; x++) {
-                cell = row[x];
+            for (j = 0; j < row.length; j++) {
+                cell = row[j];
 
                 switch (cell) {
                     case WATER:
@@ -60,7 +65,7 @@
                 }
 
                 rowElem.appendChild(
-                    element('div', 'map__cell' + (type ? ' map__cell_' + type : ''))
+                    element('div', 'map__cell' + (type ? ' map__cell_' + type : ''), '', i, j)
                 );
             }
 

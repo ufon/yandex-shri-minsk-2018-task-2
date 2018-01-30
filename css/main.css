@@ -3,6 +3,10 @@ body {
     margin: 0;
 }
 
+.visualize{
+    margin: 10px;
+}
+
 .map {
     padding: 10px;
     margin: 0;
@@ -38,4 +42,8 @@ body {
 
 .map__cell_island {
     background-color: #fad946;
+}
+
+.map__cell_current {
+    background-color: #fa4646!important;
 }
