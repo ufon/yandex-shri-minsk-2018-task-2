@@ -26,8 +26,11 @@
 
     function isIsland(matrix, i, j, visualize) {
 
-        if ((i < 0) || (i >= matrix.length)) return false;
-        if ((j < 0) || (j >= matrix[0].length)) return false;
+        let di = [0,0,1,-1]; //directions for i
+        let dj = [1,-1,0,0]; //directions for j
+
+        if ((i < 0) || (i >= matrix.length) || isNaN(i)) return false;
+        if ((j < 0) || (j >= matrix[0].length) || isNaN(j)) return false;
 
         let island = (matrix[i][j] == ISLAND) ? true : false;
 
@@ -43,12 +46,9 @@
             }, 500);
         }
 
-        if (island) {
-            isIsland(matrix, i, j + 1, visualize);
-            isIsland(matrix, i, j - 1, visualize);
-            isIsland(matrix, i + 1, j, visualize);
-            isIsland(matrix, i - 1, j, visualize);
-        }
+        if (island) 
+            [1,2,3,4].forEach((index) => 
+                isIsland(matrix, i + di[index], j + dj[index], visualize));
 
         return island;
     }
